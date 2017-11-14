@@ -48,5 +48,6 @@ void env_b(char *str);
 
 /*Holberton library functions*/
 int _strcmp(char *s1, char *s2);
+char *_strdup(char *src);
 
 #endif

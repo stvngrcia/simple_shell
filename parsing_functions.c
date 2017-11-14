@@ -102,7 +102,7 @@ char **tokenize(int token_count, char *line, const char *delim)
 	token = strtok(line, delim);
 	for (i = 0; token != NULL; i++)
 	{
-		buffer[i] = strdup(token);
+		buffer[i] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	buffer[i] = NULL;
@@ -121,7 +121,7 @@ int count_token(char *line, const char *delim)
 	char *token;
 	int i;
 
-	str = strdup(line);
+	str = _strdup(line);
 	if (str == NULL)
 		return (-1);
 	token = strtok(str, delim);

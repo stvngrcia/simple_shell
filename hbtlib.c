@@ -19,3 +19,23 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
+
+/**
+ * _strdup - create a copy of a string
+ * @src: Contains the original string
+ * Return: Gives back the copy of string
+ */
+char *_strdup(char *src)
+{
+	int i;
+	int len;
+	char *dest;
+ 
+	len = str_len(src);
+	dest = malloc(sizeof(char) * (len + 1));
+
+	for (i = 0; src[i] != '\0'; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
+}

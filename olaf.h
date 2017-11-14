@@ -46,4 +46,7 @@ void (*check_built_ins(char *str))(char *str);
 void exit_b(char *str);
 void env_b(char *str);
 
+/*Holberton library functions*/
+int _strcmp(char *s1, char *s2);
+
 #endif

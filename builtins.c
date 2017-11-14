@@ -45,7 +45,7 @@ void (*check_built_ins(char *str))(char *str)
 
 	for (i = 0; buildin[i].built != NULL; i++)
 	{
-		if (strcmp(str, buildin[i].built) == 0)
+		if (_strcmp(str, buildin[i].built) == 0)
 		{
 			return (buildin[i].f);
 		}
@@ -66,7 +66,7 @@ int built_in(char **command, char *line)
 	build = check_built_ins(command[0]);
 	if (build == NULL)
 		return (-1);
-	if (strcmp("exit", command[0]) == 0)
+	if (_strcmp("exit", command[0]) == 0)
 		double_free(command);
 	build(line);
 	return (0);

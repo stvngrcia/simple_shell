@@ -9,6 +9,7 @@ int main(void)
 	char *line;
 	size_t size;
 
+	signal(SIGINT, SIG_IGN);
 	do {
 		line = NULL;
 		size = 0;

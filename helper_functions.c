@@ -46,4 +46,5 @@ void single_free(int n, ...)
 			str = "(nil)";
 		free(str);
 	}
+	va_end(a_list);
 }

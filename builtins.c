@@ -40,6 +40,8 @@ void (*check_built_ins(char *str))(char *str)
 	builtin_t buildin[] = {
 		{"exit", exit_b},
 		{"env", env_b},
+		{"setnev", setnev_b},
+		{"unsetnev", unsetnev_b},
 		{NULL, NULL}
 	};
 

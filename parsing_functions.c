@@ -13,7 +13,6 @@ void parse_line(char *line, size_t size)
 	int token_count;
 	char **param_array;
 	const char *delim = "\n\t ";
-	char *line_cp;
 
 	token_count = 0;
 	write(STDOUT_FILENO, PROMPT, str_len(PROMPT));
@@ -26,8 +25,7 @@ void parse_line(char *line, size_t size)
 			single_free(2, param_array, line);
 			return;
 		}
-		i = built_in(param_array, line_cp);
-		free(line_cp);
+		i = built_in(param_array, line);
 		if (i == -1)
 			create_child(param_array, line);
 		for (i = 0; param_array[i] != NULL; i++)
@@ -115,17 +113,20 @@ char **tokenize(int token_count, char *line, const char *delim)
 	int i;
 	char **buffer;
 	char *token;
+	char *line_cp;
 
+	line_cp = _strdup(line);
 	buffer = malloc(sizeof(char *) * (token_count + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = strtok(line, delim);
+	token = strtok(line_cp, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	buffer[i] = NULL;
+	free(line_cp);
 	return (buffer);
 }
 

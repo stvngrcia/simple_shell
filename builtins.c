@@ -1,15 +1,14 @@
 #include "olaf.h"
 
 /**
- *
- *
- *
+ * cd_b - Changes the current working directory to the parameter passed to cd.
+ * if no parameter is passed it will change directory to HOME.
+ * @line: A string representing the input from the user.
  */
 void cd_b(char *line)
 {
 	char *buff;
 	size_t size;
-	static char *prev_dir;
 	int index;
 	int token_count;
 	char **param_array;
@@ -18,8 +17,6 @@ void cd_b(char *line)
 	token_count = 0;
 	buff = NULL;
 	size = 0;
-	prev_dir = getcwd(buff, size);
-	(void) prev_dir;
 
 	param_array = token_interface(line, delim, token_count);
 	if (param_array[0] == NULL)
@@ -27,13 +24,19 @@ void cd_b(char *line)
 		single_free(2, param_array, line);
 		return;
 	}
-
 	if (param_array[1] == NULL)
 	{
 		index = find_path("HOME");
 		chdir((environ[index]) + 5);
-		printf("%s\n", environ[index]);
 	}
+	else if (_strcmp(param_array[1], "-") == 0)
+	{
+		printf("%s\n", param_array[1]);
+	}
+	else
+		chdir(param_array[1]);
+	double_free(param_array);
+	free(prev_dir);
 }
 
 /**
@@ -76,7 +79,7 @@ void (*check_built_ins(char *str))(char *str)
 	builtin_t buildin[] = {
 		{"exit", exit_b},
 		{"env", env_b},
-		{"cd", cd_b}
+		{"cd", cd_b},
 		{NULL, NULL}
 	};
 

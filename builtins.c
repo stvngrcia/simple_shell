@@ -12,8 +12,8 @@ void env_b(__attribute__((unused))char *line)
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		for (j = 0; environ[i][j] != '\0'; j++)
-			write(1, &environ[i][j], 1);
-		write(1, "\n", 1);
+			write(STDOUT_FILENO, &environ[i][j], 1);
+		write(STDOUT_FILENO, "\n", 1);
 	}
 }
 
@@ -24,7 +24,7 @@ void env_b(__attribute__((unused))char *line)
 void exit_b(char *line)
 {
 	free(line);
-	write(1, "logout\n", 8);
+	write(STDOUT_FILENO, "logout\n", 8);
 	exit(1);
 }
 

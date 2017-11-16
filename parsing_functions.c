@@ -13,6 +13,7 @@ void parse_line(char *line, size_t size)
 	int token_count;
 	char **param_array;
 	const char *delim = "\n\t ";
+	char *line_cp;
 
 	token_count = 0;
 	write(1, PROMPT, str_len(PROMPT));
@@ -25,7 +26,8 @@ void parse_line(char *line, size_t size)
 			single_free(2, param_array, line);
 			return;
 		}
-		i = built_in(param_array, line);
+		i = built_in(param_array, line_cp);
+		free(line_cp);
 		if (i == -1)
 			create_child(param_array, line);
 		for (i = 0; param_array[i] != NULL; i++)

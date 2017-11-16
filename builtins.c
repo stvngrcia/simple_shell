@@ -1,6 +1,42 @@
 #include "olaf.h"
 
 /**
+ *
+ *
+ *
+ */
+void cd_b(char *line)
+{
+	char *buff;
+	size_t size;
+	static char *prev_dir;
+	int index;
+	int token_count;
+	char **param_array;
+	const char *delim = "\n\t ";
+
+	token_count = 0;
+	buff = NULL;
+	size = 0;
+	prev_dir = getcwd(buff, size);
+	(void) prev_dir;
+
+	param_array = token_interface(line, delim, token_count);
+	if (param_array[0] == NULL)
+	{
+		single_free(2, param_array, line);
+		return;
+	}
+
+	if (param_array[1] == NULL)
+	{
+		index = find_path("HOME");
+		chdir((environ[index]) + 5);
+		printf("%s\n", environ[index]);
+	}
+}
+
+/**
  * env_b - Prints all the environmental variables in the current shell.
  * @line: A string representing the input from the user.
  */
@@ -40,6 +76,7 @@ void (*check_built_ins(char *str))(char *str)
 	builtin_t buildin[] = {
 		{"exit", exit_b},
 		{"env", env_b},
+		{"cd", cd_b}
 		{NULL, NULL}
 	};
 

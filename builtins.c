@@ -7,17 +7,12 @@
  */
 void cd_b(char *line)
 {
-	char *buff;
-	size_t size;
 	int index;
 	int token_count;
 	char **param_array;
 	const char *delim = "\n\t ";
 
 	token_count = 0;
-	buff = NULL;
-	size = 0;
-
 	param_array = token_interface(line, delim, token_count);
 	if (param_array[0] == NULL)
 	{
@@ -36,7 +31,6 @@ void cd_b(char *line)
 	else
 		chdir(param_array[1]);
 	double_free(param_array);
-	free(prev_dir);
 }
 
 /**

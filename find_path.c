@@ -82,14 +82,13 @@ char **tokenize_path(int index, char *str)
 	int len;
 
 	len = str_len(str);
+	token_count = 0;
 	/*Moving the pointer len of str plus = sign*/
 	env_var = environ[index] + (len + 1);
-	token_count = count_token(env_var, delim);
-	if (token_count == -1)
-		return (NULL);
-	path_tokens = tokenize(token_count, env_var, delim);
+	path_tokens = token_interface(env_var, delim, token_count);
 	if (path_tokens == NULL)
 		return (NULL);
+
 	return (path_tokens);
 }
 

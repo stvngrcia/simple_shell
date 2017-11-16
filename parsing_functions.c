@@ -14,17 +14,12 @@ void parse_line(char *line, size_t size)
 	char **param_array;
 	const char *delim = "\n\t ";
 
+	token_count = 0;
 	write(STDOUT_FILENO, PROMPT, str_len(PROMPT));
 	read_len = getline(&line, &size, stdin);
 	if (read_len != -1)
 	{
-		token_count = count_token(line, delim);
-		if (token_count == -1)
-		{
-			free(line);
-			return;
-		}
-		param_array = tokenize(token_count, line, delim);
+		param_array = token_interface(line, delim, token_count);
 		if (param_array[0] == NULL)
 		{
 			single_free(2, param_array, line);
@@ -82,6 +77,29 @@ void create_child(char **param_array, char *line)
 }
 
 /**
+ * token_interface - Meant to interact with other token functions, and make
+ * them more accessible to other parts of the program.
+ * @line: A string containing the raw user input.
+ * @delim: A constant string containing the desired delimeter to tokenize line.
+ * @token_count: A holder for the amount of tokens in a string.
+ * Return: Upon success an array of tokens representing the command. Otherwise
+ * returns NULL.
+ */
+char **token_interface(char *line, const char *delim, int token_count)
+{
+	char **param_array;
+
+	token_count = count_token(line, delim);
+	if (token_count == -1)
+	{
+		free(line);
+		return (NULL);
+	}
+	param_array = tokenize(token_count, line, delim);
+	return (param_array);
+}
+
+/**
  * tokenize - Separates a string into an array of tokens. DON'T FORGET TO FREE
  * on receiving function when using tokenize.
  * @token_count: An integer representing the amount of tokens in the array.
@@ -130,3 +148,5 @@ int count_token(char *line, const char *delim)
 	free(str);
 	return (i);
 }
+
+

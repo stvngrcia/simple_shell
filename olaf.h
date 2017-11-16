@@ -28,6 +28,7 @@ typedef struct builtin_d
 
 extern char **environ;
 
+char **token_interface(char *line, const char *delim, int token_count);
 int count_token(char *line, const char *delim);
 char **tokenize(int token_count, char *line, const char *delim);
 void create_child(char **param_array, char *line);
@@ -41,10 +42,12 @@ char *build_path(char *directory, char *command);
 void double_free(char **to_be_freed);
 void single_free(int n, ...);
 
+/*Builtin functions*/
 int built_in(char **command, char *line);
 void (*check_built_ins(char *str))(char *str);
 void exit_b(char *str);
 void env_b(char *str);
+void cd_b(char *directory);
 
 /*Holberton library functions*/
 int _strcmp(char *s1, char *s2);

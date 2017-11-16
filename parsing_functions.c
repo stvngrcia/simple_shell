@@ -96,6 +96,12 @@ char **token_interface(char *line, const char *delim, int token_count)
 		return (NULL);
 	}
 	param_array = tokenize(token_count, line, delim);
+	if (param_array == NULL)
+	{
+		free(line);
+		return (NULL);
+	}
+
 	return (param_array);
 }
 
@@ -151,5 +157,3 @@ int count_token(char *line, const char *delim)
 	free(str);
 	return (i);
 }
-
-

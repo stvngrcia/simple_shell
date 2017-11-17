@@ -25,7 +25,7 @@ void cd_b(char *line)
 		chdir((environ[index]) + 5);
 	}
 	else if (_strcmp(param_array[1], "-") == 0)
-		print_str(param_array[1]);
+		print_str(param_array[1], 0);
 
 	else
 		chdir(param_array[1]);
@@ -56,7 +56,7 @@ void env_b(__attribute__((unused))char *line)
 void exit_b(char *line)
 {
 	free(line);
-	write(STDOUT_FILENO, "logout\n", 8);
+	print_str("logout", 0);
 	exit(1);
 }
 

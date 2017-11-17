@@ -62,7 +62,8 @@ void create_child(char **param_array, char *line)
 			command = path_finder(param_array[0]);
 			if (command == NULL)
 			{
-				printf("%s: command not found\n", tmp_command);
+				print_str(tmp_command, 1);
+				print_str(": command not found", 0);
 				single_free(2, line, tmp_command);
 				for (i = 1; param_array[i]; i++)
 					free(param_array[i]);

@@ -55,12 +55,14 @@ void create_child(char **param_array, char *line)
 	id = fork();
 	if (id == 0)
 	{
-		check = stat(param_array[0], &buf);
-		if (check == -1)
+		tmp_command = param_array[0];
+		command = path_finder(param_array[0]);
+		if (command == NULL)
 		{
-			tmp_command = param_array[0];
-			command = path_finder(param_array[0]);
-			if (command == NULL)
+			/*Looking for file in current directory*/
+			check = stat(tmp_command, &buf);
+
+			if (check == -1)
 			{
 				print_str(tmp_command, 1);
 				print_str(": command not found", 0);
@@ -70,8 +72,10 @@ void create_child(char **param_array, char *line)
 				free(param_array);
 				exit(100);
 			}
-			param_array[0] = command;
+			/*file exist in cwd or has full path*/
+			command = tmp_command;
 		}
+		param_array[0] = command;
 		if (param_array[0] != NULL)
 		{
 			execve(param_array[0], param_array, environ);

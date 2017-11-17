@@ -25,9 +25,8 @@ void cd_b(char *line)
 		chdir((environ[index]) + 5);
 	}
 	else if (_strcmp(param_array[1], "-") == 0)
-	{
-		printf("%s\n", param_array[1]);
-	}
+		print_str(param_array[1]);
+
 	else
 		chdir(param_array[1]);
 	double_free(param_array);

@@ -52,5 +52,6 @@ void cd_b(char *directory);
 /*Holberton library functions*/
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *src);
+void print_str(char *str);
 
 #endif

@@ -39,3 +39,18 @@ char *_strdup(char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
+/**
+ * print_str - Prints a string character by character.
+ * @str: String to be printed. If the string is NULL it will print (null)
+ */
+void print_str(char *str)
+{
+	int i;
+
+	if (str == NULL)
+		str = "(null)";
+	for (i = 0; str[i] != '\0'; i++)
+		write(STDOUT_FILENO, &str[i], 1);
+	write(STDOUT_FILENO, "\n", 1);
+}

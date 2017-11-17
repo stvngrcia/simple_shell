@@ -48,12 +48,12 @@ void (*check_built_ins(char *str))(char *str);
 void exit_b(char *str);
 void env_b(char *str);
 void cd_b(char *directory);
-void getenv_b(char *env_var);
 void setnev_b(char *str);
 void unsetnev_b(char *str);
 
 /*Holberton library functions*/
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *src);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 #endif

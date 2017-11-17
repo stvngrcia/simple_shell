@@ -59,5 +59,6 @@ void remove_env(char *env);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *src);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void print_str(char *str, int new_line);
 
 #endif

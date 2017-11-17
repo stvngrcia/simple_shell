@@ -1,6 +1,38 @@
 #include "olaf.h"
 
 /**
+ * cd_b - Changes the current working directory to the parameter passed to cd.
+ * if no parameter is passed it will change directory to HOME.
+ * @line: A string representing the input from the user.
+ */
+void cd_b(char *line)
+{
+	int index;
+	int token_count;
+	char **param_array;
+	const char *delim = "\n\t ";
+
+	token_count = 0;
+	param_array = token_interface(line, delim, token_count);
+	if (param_array[0] == NULL)
+	{
+		single_free(2, param_array, line);
+		return;
+	}
+	if (param_array[1] == NULL)
+	{
+		index = find_path("HOME");
+		chdir((environ[index]) + 5);
+	}
+	else if (_strcmp(param_array[1], "-") == 0)
+		print_str(param_array[1], 0);
+
+	else
+		chdir(param_array[1]);
+	double_free(param_array);
+}
+
+/**
  * env_b - Prints all the environmental variables in the current shell.
  * @line: A string representing the input from the user.
  */
@@ -24,7 +56,7 @@ void env_b(__attribute__((unused))char *line)
 void exit_b(char *line)
 {
 	free(line);
-	write(STDOUT_FILENO, "logout\n", 8);
+	print_str("logout", 0);
 	exit(1);
 }
 
@@ -42,6 +74,7 @@ void (*check_built_ins(char *str))(char *str)
 		{"env", env_b},
 		{"setnev", setnev_b},
 		{"unsetnev", unsetnev_b},
+		{"cd", cd_b},
 		{NULL, NULL}
 	};
 

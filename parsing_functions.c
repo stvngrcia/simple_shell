@@ -46,6 +46,7 @@ void create_child(char **param_array, char *line)
 {
 	pid_t id;
 	int status;
+	int i;
 	int check;
 	struct stat buf;
 	char *tmp_command;
@@ -54,19 +55,27 @@ void create_child(char **param_array, char *line)
 	id = fork();
 	if (id == 0)
 	{
-		check = stat(param_array[0], &buf);
-		if (check == -1)
+		tmp_command = param_array[0];
+		command = path_finder(param_array[0]);
+		if (command == NULL)
 		{
-			tmp_command = param_array[0];
-			command = path_finder(param_array[0]);
-			if (command == NULL)
+			/*Looking for file in current directory*/
+			check = stat(tmp_command, &buf);
+
+			if (check == -1)
 			{
-				printf("%s: command not found\n", tmp_command);
-				single_free(3, line, param_array, tmp_command);
+				print_str(tmp_command, 1);
+				print_str(": command not found", 0);
+				single_free(2, line, tmp_command);
+				for (i = 1; param_array[i]; i++)
+					free(param_array[i]);
+				free(param_array);
 				exit(100);
 			}
-			param_array[0] = command;
+			/*file exist in cwd or has full path*/
+			command = tmp_command;
 		}
+		param_array[0] = command;
 		if (param_array[0] != NULL)
 		{
 			execve(param_array[0], param_array, environ);
@@ -96,6 +105,12 @@ char **token_interface(char *line, const char *delim, int token_count)
 		return (NULL);
 	}
 	param_array = tokenize(token_count, line, delim);
+	if (param_array == NULL)
+	{
+		free(line);
+		return (NULL);
+	}
+
 	return (param_array);
 }
 
@@ -113,17 +128,20 @@ char **tokenize(int token_count, char *line, const char *delim)
 	int i;
 	char **buffer;
 	char *token;
+	char *line_cp;
 
+	line_cp = _strdup(line);
 	buffer = malloc(sizeof(char *) * (token_count + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = strtok(line, delim);
+	token = strtok(line_cp, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	buffer[i] = NULL;
+	free(line_cp);
 	return (buffer);
 }
 
@@ -148,5 +166,3 @@ int count_token(char *line, const char *delim)
 	free(str);
 	return (i);
 }
-
-

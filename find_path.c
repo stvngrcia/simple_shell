@@ -82,14 +82,13 @@ char **tokenize_path(int index, char *str)
 	int len;
 
 	len = str_len(str);
+	token_count = 0;
 	/*Moving the pointer len of str plus = sign*/
 	env_var = environ[index] + (len + 1);
-	token_count = count_token(env_var, delim);
-	if (token_count == -1)
-		return (NULL);
-	path_tokens = tokenize(token_count, env_var, delim);
+	path_tokens = token_interface(env_var, delim, token_count);
 	if (path_tokens == NULL)
 		return (NULL);
+
 	return (path_tokens);
 }
 
@@ -98,7 +97,7 @@ char **tokenize_path(int index, char *str)
  * specific file. aka commmand.
  * @path_tokens: A pointer to an array of strings representing the different
  * paths contained in the PATH environmental varible.
- * @command: Represents a command. For example ls, echo, pwd, etc.
+ * @command: Represents a command. For example ls, echo, pwd, /bin/ls etc.
  * Return: Upon success a string with the upper most directory containing
  * the command file. Otherwise returns NULL.
  */
@@ -115,6 +114,8 @@ char *search_directories(char **path_tokens, char *command)
 	cwd = getcwd(buf, size);
 	if (cwd == NULL)
 		return (NULL);
+	if (command[0] == '/')
+		command = command + 1;
 	for (i = 0; path_tokens[i] != NULL; i++)
 	{
 		s = chdir(path_tokens[i]);

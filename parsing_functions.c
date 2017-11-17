@@ -46,6 +46,7 @@ void create_child(char **param_array, char *line)
 {
 	pid_t id;
 	int status;
+	int i;
 	int check;
 	struct stat buf;
 	char *tmp_command;
@@ -62,7 +63,10 @@ void create_child(char **param_array, char *line)
 			if (command == NULL)
 			{
 				printf("%s: command not found\n", tmp_command);
-				single_free(3, line, param_array, tmp_command);
+				single_free(2, line, tmp_command);
+				for (i = 1; param_array[i]; i++)
+					free(param_array[i]);
+				free(param_array);
 				exit(100);
 			}
 			param_array[0] = command;

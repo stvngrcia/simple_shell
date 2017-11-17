@@ -48,8 +48,12 @@ void (*check_built_ins(char *str))(char *str);
 void exit_b(char *str);
 void env_b(char *str);
 void cd_b(char *directory);
-void setnev_b(char *str);
-void unsetnev_b(char *str);
+void unsetenv_b(char *str);
+void setenv_b(char *str);
+int check_env(char *env);
+void modify_env(char *env, char *value);
+void add_env(char *env, char *value);
+void remove_env(char *env);
 
 /*Holberton library functions*/
 int _strcmp(char *s1, char *s2);

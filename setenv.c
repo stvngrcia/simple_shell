@@ -12,7 +12,6 @@ void setenv_b(char *line)
 	char *env, *value;
 
 	path_tokens = token_interface(line, delim, token_count);
-	printf("%s\n", path_tokens[1]);
 	env = path_tokens[1], value = path_tokens[2];
 
 	check = check_env(env);
@@ -21,7 +20,7 @@ void setenv_b(char *line)
 	if (check == 0)
 		add_env(env, value);
 
-	double_free(path_tokens);	
+	double_free(path_tokens);
 }
 
 /**

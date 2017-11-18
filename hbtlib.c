@@ -73,6 +73,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (p);
 }
 
+/**
  * print_str - Prints a string character by character.
  * @str: String to be printed. If the string is NULL it will print (null)
  * @new_line: If integer is 0 a new line will be printed. Otherwise a new line

@@ -50,14 +50,33 @@ void env_b(__attribute__((unused))char *line)
 }
 
 /**
- * exit_b - Exits the shell. After freeing allocated resources.
+ * exit_b - Exits the shell with value 0. After freeing allocated resources.
+ * If exit value provided, exit with value. If exit value is not integer,
+ * exit with 2 and print error message.
  * @line: A string representing the input from the user.
  */
 void exit_b(char *line)
 {
+	int token_count, value;
+	char **argv;
+	const char *delim = "\n\t ";
+
+	argv = token_interface(line, delim, token_count);
+	if (argv[1] == NULL)
+		value = 0;
+	else if (atoi(argv[1]))
+		value = atoi(argv[1]);
+	else
+	{
+		value = 2;
+		print_str("logout", 0);
+		printf("exit: %s: numeric argument required\n", argv[1]);
+		free(line);
+		exit(value);
+	}
 	free(line);
 	print_str("logout", 0);
-	exit(1);
+	exit(value);
 }
 
 /**

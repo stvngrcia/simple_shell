@@ -81,13 +81,11 @@ void add_env(char *env, char *value)
 	for (i = 0; environ[i]; i++)
 		count++;
 
-	new = _realloc(environ, sizeof(char *) * count, sizeof(char *) * (count + 1));
+	new = _realloc(environ, sizeof(char *) * count, sizeof(char *) * (count + 2));
 	if (new == NULL)
 		return;
 	for (i = 0; i < count; i++)
 		new[i] = _strdup(environ[i]);
-	new[i + 1] = NULL;
-
 	size = strlen(env) + strlen(value) + 2;
 	new[i] = malloc(sizeof(char) * size);
 	if (new[i] == NULL)
@@ -101,6 +99,6 @@ void add_env(char *env, char *value)
 	for (t = 0; value[t]; j++, t++)
 		new[i][j] = value[t];
 	new[i][j] = '\0';
-
+	new[i + 1] = NULL;
 	environ = new;
 }

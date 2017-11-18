@@ -86,6 +86,7 @@ void add_env(char *env, char *value)
 		return;
 	for (i = 0; i < count; i++)
 		new[i] = _strdup(environ[i]);
+	new[i + 1] = NULL;
 
 	size = strlen(env) + strlen(value) + 2;
 	new[i] = malloc(sizeof(char) * size);

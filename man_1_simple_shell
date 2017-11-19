@@ -1,34 +1,40 @@
-.TH man 1 "14 November 2017" "0.01" "Olaf The Shell man page"
+.TH man 1 "20 November 2017" "1.0" "Olaf The Shell man page"
 .SH NAME
 .B Olaf
 - A basic UNIX command line interpreter.
 .SH SYNOPSIS
- Olaf can interpret and execute command line arguments read from the standard input.
+Olaf can interpret and execute command line arguments read from the standard input.
 .SH DESCRIPTION
- The Olaf shell is a command that read line by line from a file or the terminal line.
+The Olaf shell is a program that reads line by line from a file or the terminal line. It then interprets the lines and executes it if the line is a valid command. 
 
- It then interprets the lines, and if at the begining of the line there is a valid
-
- command it then executes it. The Olaf shell will parse to the environemtal variables
-
- to find the path for commands.
-
-.SH PATH Search
- When looking for a command, Olaf will first look to see if  there are any buildin functions
-
- with that name and then execute them. If not buitins found then the PATH will be parsed to try to find the command executable. If the full
-
- path of a function is entered it will just simply run it.
 .SH USAGE
-All the files are to be compiled on an Ubuntu 14.04 LTS machine with `gcc -Wall -Werror -Wextra -pedantic *.c -o Olaf`
+All the files are to be compiled on an Ubuntu 14.04 LTS machine with "gcc -Wall -Werror -Wextra -pedantic *.c -o Olaf".
 
-Once compiled, to login run:
- ($) ./Olaf
-.SH RETURN VALUES
-Olaf shell will exit with status 1.
+Once compiled, to start the program, run:
+.br
+$ ./Olaf
+
+To exit the program, run:
+.br
+Olaf $ exit
+
+.SH BUILT-IN
+The following built-ins are supported by the Olaf shell:
+
+.B env - 
+Print the current environment.
+
+.B setenv VARIABLE VALUE - 
+Initialize a new environment variable, or modify an existing one. 
+
+.B unsetenv VARIABLE - 
+Remove a environment variable.
+
+.SH RETURN VALUE
+Olaf shell will exit with status 0 unless status is specified.
 .SH SEE ALSO
 .I sh(1)
 .SH BUGS
 No known bugs.
 .SH AUTHOR
-Steven Garcia
+Steven Garcia, Yunju Chen

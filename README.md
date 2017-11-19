@@ -18,9 +18,9 @@ To exit the program, run:
   
 The Olaf shell supports most shell commands, such as ```cat```, ```pwd```, ```ls -la``` and more. The Olaf shell also supports the following built-ins:  
    
-** + env** - Print the current environment    
-** + setenv VARIABLE VALUE** - Initialize  a new environment VARIABLE  with VALUE, or modify an existing VARIABLE with new VALUE
-** + unsetenv VARIABLE** - Remove a environment VARIABLE  
++ **env** - Print the current environment    
++ **setenv VARIABLE VALUE** - Initialize  a new environment VARIABLE  with VALUE, or modify an existing VARIABLE with new VALUE  
++ **unsetenv VARIABLE** - Remove a environment VARIABLE  
 
 ## Return Value  
 Olaf shell will exit with status 0 unless status is specified.  

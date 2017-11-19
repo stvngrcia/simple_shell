@@ -28,7 +28,7 @@ Print the current environment.
 Initialize a new environment variable, or modify an existing one. 
 
 .B unsetenv VARIABLE - 
-Remove a environment variable.
+Remove an environment variable.
 
 .SH RETURN VALUE
 Olaf shell will exit with status 0 unless status is specified.

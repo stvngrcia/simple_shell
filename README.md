@@ -23,8 +23,8 @@ The following built-ins are supported by the Olaf shell:
   
 + **env** - Print the current environment    
 + **setenv VARIABLE VALUE** - Initialize  a new environment ```VARIABLE```  with ```VALUE```, or modify an existing ```VARIABLE``` with ```VALUE```  
-+ **unsetenv VARIABLE** - Remove a environment ```VARIABLE```  
++ **unsetenv VARIABLE** - Remove an environment ```VARIABLE```  
 
 ## Return Value  
-Olaf shell will exit with status 0 unless status is specified with the syntax ```exit VALUE```.  
+Olaf shell will exit with status 0 unless status is specified with syntax ```exit VALUE```.  
 

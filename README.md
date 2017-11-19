@@ -20,6 +20,7 @@ The Olaf shell supports most shell commands, such as ```cat```, ```pwd```, ```ls
 
 ## Built-Ins  
 The following built-ins are supported by the Olaf shell:   
+  
 + **env** - Print the current environment    
 + **setenv VARIABLE VALUE** - Initialize  a new environment ```VARIABLE```  with ```VALUE```, or modify an existing ```VARIABLE``` with ```VALUE```  
 + **unsetenv VARIABLE** - Remove a environment ```VARIABLE```  

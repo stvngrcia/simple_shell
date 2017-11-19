@@ -1,4 +1,4 @@
-# The Simple Shell Project - Olaf Shell
+# The Shell Project - Olaf The Simple Shell
 
 ## Synopsis
 This is a humble and simple implementation of a UNIX command line interpreter.

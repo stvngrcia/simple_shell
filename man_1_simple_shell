@@ -18,7 +18,7 @@ To exit the program, run:
 .br
 Olaf $ exit
 
-.SH BUILT-IN
+.SH BUILT-INS
 The following built-ins are supported by the Olaf shell:
 
 .B env - 

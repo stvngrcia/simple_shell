@@ -16,7 +16,10 @@ void unsetenv_b(char *line)
 
 	check = check_env(env);
 	if (check == 0)
+	{
+		printf("unsetenv: %s: variable not found\n", env);
 		return;
+	}
 	if (check == 1)
 		remove_env(env);
 

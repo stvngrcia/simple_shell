@@ -1,7 +1,7 @@
 #include "olaf.h"
 
 /**
- * print_unsgined_number - Prints an unsigned number
+ * print_number - Prints an unsigned number
  * @n: unsigned integer to be printed
  * Return: The amount of numbers printed
  */

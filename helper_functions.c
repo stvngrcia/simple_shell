@@ -63,5 +63,4 @@ void error_printing(char *av, int count, char *command)
 	print_number(count);
 	print_str(": ", 1);
 	print_str(command, 1);
-	print_str(": not found", 0);
 }

@@ -71,6 +71,7 @@ void exit_b(char *line)
 		value = 2;
 		print_str("logout", 0);
 		printf("exit: %s: numeric argument required\n", argv[1]);
+		double_free(argv);
 		free(line);
 		exit(value);
 	}

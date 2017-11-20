@@ -6,7 +6,7 @@
  * @line: A pointer to a string. Will always be NULL upon function entry.
  * @size: A holder for numbers of size_t. Will always be initilized to 0.
  */
-void parse_line(char *line, size_t size, int command_counter)
+void parse_line(char *line, size_t size, int command_counter, char **av)
 {
 	int i;
 	ssize_t read_len;
@@ -27,7 +27,7 @@ void parse_line(char *line, size_t size, int command_counter)
 		}
 		i = built_in(param_array, line);
 		if (i == -1)
-			create_child(param_array, line, command_counter);
+			create_child(param_array, line, command_counter, av);
 		for (i = 0; param_array[i] != NULL; i++)
 			free(param_array[i]);
 		single_free(2, param_array, line);
@@ -42,7 +42,7 @@ void parse_line(char *line, size_t size, int command_counter)
  * of a program and its parameters. This array is NULL terminated.
  * @line: The contents of the read line.
  */
-void create_child(char **param_array, char *line, int command_counter)
+void create_child(char **param_array, char *line, int count, char **av)
 {
 	pid_t id;
 	int status;
@@ -64,9 +64,11 @@ void create_child(char **param_array, char *line, int command_counter)
 
 			if (check == -1)
 			{
+				print_str(av[0], 0);
+				print_str(":", 0);
+				print_number(count);
 				print_str(tmp_command, 1);
-				print_number(command_counter);
-				print_str(": command not found", 0);
+				print_str(": not found", 0);
 				single_free(2, line, tmp_command);
 				for (i = 1; param_array[i]; i++)
 					free(param_array[i]);

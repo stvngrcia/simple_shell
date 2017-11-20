@@ -31,8 +31,8 @@ extern char **environ;
 char **token_interface(char *line, const char *delim, int token_count);
 int count_token(char *line, const char *delim);
 char **tokenize(int token_count, char *line, const char *delim);
-void create_child(char **param_array, char *line);
-void parse_line(char *line, size_t size);
+void create_child(char **param_array, char *line, int command_counter);
+void parse_line(char *line, size_t size, int command_counter);
 char *path_finder(char *command);
 int str_len(char *str);
 int find_path(char *str);
@@ -53,5 +53,7 @@ void cd_b(char *directory);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *src);
 void print_str(char *str, int new_line);
+int print_number(int n);
+int _write_char(char c);
 
 #endif

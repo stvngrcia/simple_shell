@@ -57,3 +57,13 @@ void print_str(char *str, int new_line)
 	if (new_line == 0)
 		write(STDOUT_FILENO, "\n", 1);
 }
+
+/**
+ * _write_char - Writes a character to stdout
+ * @c: Character that will be written to stdout
+ * Return: Upon success how many characters were written.
+ */
+int _write_char(char c)
+{
+	return (write(1, &c, 1));
+}

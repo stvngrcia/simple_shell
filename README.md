@@ -8,7 +8,7 @@ Olaf can interpret and execute command line arguments read from the standard inp
 
 ## Usage
 All the files are to be compiled on an Ubuntu 14.04 LTS machine with:    
-```c
+```
 gcc -Wall -Werror -Wextra -pedantic *.c -o olaf
 ```  
   
@@ -30,3 +30,21 @@ The following built-ins are supported by the Olaf shell:
 ## Return Value  
 Olaf shell will exit with status 0 unless status is specified with syntax ```exit VALUE```.  
 
+## List of functions.
+
+| Function Name | Description |
+|---------------- | -----------|
+|[Parse_line](https://github.com/stvngrcia/simple_shell/blob/master/parsing_functions.c)    | Parses the command line looking for commands and argumements.|
+|[Create Child](https://github.com/stvngrcia/simple_shell/blob/master/parsing_functions.c) | Forks the current process in order to execute another program.|
+|[Tokenize](https://github.com/stvngrcia/simple_shell/blob/master/parsing_functions.c) | Separates a string in to an array of tokens based on a delimiter passed to the function. |
+|[Count Token](https://github.com/stvngrcia/simple_shell/blob/master/parsing_functions.c) | Counts how many tokens are on a given string that is separated by a delimeter. |
+|[Find_path](https://github.com/stvngrcia/simple_shell/blob/master/find_path.c)|Looks through the environmental variables untill it finds the PATH variable, It then returns the index of its possition.|
+|[Tokenize_path](https://github.com/stvngrcia/simple_shell/blob/master/find_path.c) | Separates the PATH variable into separate strings each containing a directory in the PATH. |
+|[Search_directories](https://github.com/stvngrcia/simple_shell/blob/master/find_path.c) | Looks through directories stored in path_tokens for a specifc file name which represents a command. |
+|[Build_path](https://github.com/stvngrcia/simple_shell/blob/master/find_path.c) | Combines two strings, one representing the path directory and the other representing the command file. |
+|[_strcmp](https://github.com/stvngrcia/simple_shell/blob/master/hbtlib.c) | Compares two strings and if they match the function returns 0.|
+|[_strdup](https://github.com/stvngrcia/simple_shell/blob/master/hbtlib.c) | Duplicates a string.|
+|[print_str](https://github.com/stvngrcia/simple_shell/blob/master/hbtlib.c)| Prints a string character by character.|
+|[cd_b](https://github.com/stvngrcia/simple_shell/blob/master/builtins.c) | Changes the current working directory to the parameter passed to the command cd. |
+|[env_b](https://github.com/stvngrcia/simple_shell/blob/master/builtins.c) | Prints all environmental variables available in the current shell.
+|[check_built_ins](https://github.com/stvngrcia/simple_shell/blob/master/builtins.c) | Checks if a command exitst as a builtin funcition and then it returns a pointer to the right function.|

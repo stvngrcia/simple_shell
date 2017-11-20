@@ -48,3 +48,20 @@ void single_free(int n, ...)
 	}
 	va_end(a_list);
 }
+
+
+/**
+ * error_printing - Prints a message error when a comand is not found.
+ * @count: A counter keeping track of the number of commands run on the shell.
+ * @av: The name of the program running the shell.
+ * @command: The specific command not being found.
+ */
+void error_printing(char *av, int count, char *command)
+{
+	print_str(av, 1);
+	print_str(": ", 1);
+	print_number(count);
+	print_str(": ", 1);
+	print_str(command, 1);
+	print_str(": not found", 0);
+}

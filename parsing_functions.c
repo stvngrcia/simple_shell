@@ -84,12 +84,7 @@ void create_child(char **param_array, char *line, int count, char **av)
 		if (param_array[0] != NULL)
 		{
 			if (execve(param_array[0], param_array, environ) == -1)
-			{
-				error_printing(av[0], count, tmp_command);
-				print_str(": ", 1);
-				perror("");
-				exit(1);
-			}
+				exec_error(av[0], count, tmp_command);
 		}
 	}
 	else

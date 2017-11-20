@@ -30,17 +30,17 @@ extern char **environ;
 
 char **token_interface(char *, const char *, int);
 int count_token(char *, const char *);
-char **tokenize(int , char *, const char *);
+char **tokenize(int, char *, const char *);
 void create_child(char **, char *, int, char **);
 void parse_line(char *, size_t, int, char **);
 char *path_finder(char *);
 int str_len(char *);
 int find_path(char *);
-char **tokenize_path(int , char *);
+char **tokenize_path(int, char *);
 char *search_directories(char **, char *);
 char *build_path(char *, char *);
 void double_free(char **);
-void single_free(int , ...);
+void single_free(int, ...);
 
 /*Builtin functions*/
 int built_in(char **, char *);

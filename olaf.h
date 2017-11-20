@@ -56,4 +56,7 @@ void print_str(char *, int);
 int print_number(int);
 int _write_char(char);
 
+/* Helper functions*/
+void error_printing(char *, int, char *);
+
 #endif

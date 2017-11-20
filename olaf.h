@@ -53,5 +53,10 @@ void cd_b(char *directory);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *src);
 void print_str(char *str, int new_line);
+int _atoi(char *s);
+int length(char *s);
+int exponent(int len);
+int total(char *s);
+int neg(char *s, int p);
 
 #endif

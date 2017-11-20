@@ -57,15 +57,15 @@ void env_b(__attribute__((unused))char *line)
  */
 void exit_b(char *line)
 {
-	int token_count, value;
+	int token_count = 0, value;
 	char **argv;
 	const char *delim = "\n\t ";
 
 	argv = token_interface(line, delim, token_count);
 	if (argv[1] == NULL)
 		value = 0;
-	else if (atoi(argv[1]))
-		value = atoi(argv[1]);
+	else if (_atoi(argv[1]))
+		value = _atoi(argv[1]);
 	else
 	{
 		value = 2;
@@ -74,6 +74,7 @@ void exit_b(char *line)
 		free(line);
 		exit(value);
 	}
+	double_free(argv);
 	free(line);
 	print_str("logout", 0);
 	exit(value);

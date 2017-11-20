@@ -5,6 +5,9 @@
  * needed by the program.
  * @line: A pointer to a string. Will always be NULL upon function entry.
  * @size: A holder for numbers of size_t. Will always be initilized to 0.
+ * @command_counter: A counter keeping track of how many commands have been
+ * entered into the shell.
+ * @av: Name of the program running the shell
  */
 void parse_line(char *line, size_t size, int command_counter, char **av)
 {
@@ -41,6 +44,9 @@ void parse_line(char *line, size_t size, int command_counter, char **av)
  * @param_array: An array of pointers to strings containing the possible name
  * of a program and its parameters. This array is NULL terminated.
  * @line: The contents of the read line.
+ * @count: A counter keeping track of how many commands have been entered
+ * into the shell.
+ * @av: Name of the program running the shell
  */
 void create_child(char **param_array, char *line, int count, char **av)
 {

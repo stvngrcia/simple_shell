@@ -68,7 +68,7 @@ void error_printing(char *av, int count, char *command)
 /**
  * exec_error - Prints exec errors.
  * @av: The name of the program running the shell.
- * @command: The specific command not being found.
+ * @count: Keeps track of how many commands have been entered.
  * @tmp_command: The command that filed.
  */
 

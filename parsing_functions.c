@@ -70,11 +70,7 @@ void create_child(char **param_array, char *line, int count, char **av)
 
 			if (check == -1)
 			{
-				print_str(av[0], 0);
-				print_str(":", 0);
-				print_number(count);
-				print_str(tmp_command, 1);
-				print_str(": not found", 0);
+				error_printing(av[0], count, tmp_command);
 				single_free(2, line, tmp_command);
 				for (i = 1; param_array[i]; i++)
 					free(param_array[i]);

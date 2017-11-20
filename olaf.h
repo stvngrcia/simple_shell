@@ -28,32 +28,32 @@ typedef struct builtin_d
 
 extern char **environ;
 
-char **token_interface(char *line, const char *delim, int token_count);
-int count_token(char *line, const char *delim);
-char **tokenize(int token_count, char *line, const char *delim);
-void create_child(char **param_array, char *line, int command_counter);
-void parse_line(char *line, size_t size, int command_counter);
-char *path_finder(char *command);
-int str_len(char *str);
-int find_path(char *str);
-char **tokenize_path(int index, char *str);
-char *search_directories(char **path_tokens, char *command);
-char *build_path(char *directory, char *command);
-void double_free(char **to_be_freed);
-void single_free(int n, ...);
+char **token_interface(char *, const char *, int);
+int count_token(char *, const char *);
+char **tokenize(int , char *, const char *);
+void create_child(char **, char *, int, char **);
+void parse_line(char *, size_t, int, char **);
+char *path_finder(char *);
+int str_len(char *);
+int find_path(char *);
+char **tokenize_path(int , char *);
+char *search_directories(char **, char *);
+char *build_path(char *, char *);
+void double_free(char **);
+void single_free(int , ...);
 
 /*Builtin functions*/
-int built_in(char **command, char *line);
-void (*check_built_ins(char *str))(char *str);
-void exit_b(char *str);
-void env_b(char *str);
-void cd_b(char *directory);
+int built_in(char **, char *);
+void (*check_built_ins(char *))(char *);
+void exit_b(char *);
+void env_b(char *);
+void cd_b(char *);
 
 /*Holberton library functions*/
-int _strcmp(char *s1, char *s2);
-char *_strdup(char *src);
-void print_str(char *str, int new_line);
-int print_number(int n);
-int _write_char(char c);
+int _strcmp(char *, char *);
+char *_strdup(char *);
+void print_str(char *, int);
+int print_number(int);
+int _write_char(char);
 
 #endif
